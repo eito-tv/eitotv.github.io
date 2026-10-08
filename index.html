@@ -408,13 +408,13 @@ h1{
     <p class="tagline">GAMING · CONFIGURACIONES · COMUNIDAD</p>
 
     <nav class="socials" id="redes">
-      <a href="https://discord.gg/ReUtMYvgrx" target="_blank" aria-label="Discord"><img class="brand-logo" src="https://cdn.simpleicons.org/discord/5865F2" alt="Discord"></a>
-      <a href="https://www.youtube.com/@eito_ttv" target="_blank" aria-label="YouTube"><img class="brand-logo" src="https://cdn.simpleicons.org/youtube/FF0000" alt="YouTube"></a>
-      <a href="https://www.twitch.tv/eito_ttv" target="_blank" aria-label="Twitch"><img class="brand-logo" src="https://cdn.simpleicons.org/twitch/9146FF" alt="Twitch"></a>
-      <a href="https://www.tiktok.com/@eito_mvp" target="_blank" aria-label="TikTok"><img class="brand-logo" src="https://cdn.simpleicons.org/tiktok/FFFFFF" alt="TikTok"></a>
-      <a href="https://www.instagram.com/edwin_eito" target="_blank" aria-label="Instagram"><img class="brand-logo" src="https://cdn.simpleicons.org/instagram/FF0069" alt="Instagram"></a>
+      <a href="https://discord.gg/ReUtMYvgrx" class="app-link" data-app="discord" aria-label="Discord"><img class="brand-logo" src="https://cdn.simpleicons.org/discord/5865F2" alt="Discord"></a>
+      <a href="https://www.youtube.com/@eito_ttv" class="app-link" data-app="youtube" aria-label="YouTube"><img class="brand-logo" src="https://cdn.simpleicons.org/youtube/FF0000" alt="YouTube"></a>
+      <a href="https://www.twitch.tv/eito_ttv" class="app-link" data-app="twitch" aria-label="Twitch"><img class="brand-logo" src="https://cdn.simpleicons.org/twitch/9146FF" alt="Twitch"></a>
+      <a href="https://www.tiktok.com/@eito_mvp" class="app-link" data-app="tiktok" aria-label="TikTok"><img class="brand-logo" src="https://cdn.simpleicons.org/tiktok/FFFFFF" alt="TikTok"></a>
+      <a href="https://www.instagram.com/edwin_eito" class="app-link" data-app="instagram" aria-label="Instagram"><img class="brand-logo" src="https://cdn.simpleicons.org/instagram/FF0069" alt="Instagram"></a>
       <a href="#" aria-label="Xbox"><img class="brand-logo" src="https://cdn.simpleicons.org/xbox/107C10" alt="Xbox"></a>
-      <a href="https://steamcommunity.com/profiles/76561199100788703/" target="_blank" aria-label="Steam"><img class="brand-logo" src="https://cdn.simpleicons.org/steam/FFFFFF" alt="Steam"></a>
+      <a href="https://steamcommunity.com/profiles/76561199100788703/" class="app-link" data-app="steam" aria-label="Steam"><img class="brand-logo" src="https://cdn.simpleicons.org/steam/FFFFFF" alt="Steam"></a>
     </nav>
 
   </header>
@@ -423,7 +423,7 @@ h1{
 
     <div class="grid">
 
-      <a class="card featured discord" href="https://discord.gg/ReUtMYvgrx" target="_blank">
+      <a class="card featured discord app-link" href="https://discord.gg/ReUtMYvgrx" data-app="discord">
         <div class="icon discord"><img class="brand-logo" src="https://cdn.simpleicons.org/discord/5865F2" alt="Discord"></div>
         <div>
           <strong>SERVER DE DISCORD</strong>
@@ -432,7 +432,7 @@ h1{
         <div class="arrow">›</div>
       </a>
 
-      <a class="card instagram" href="https://www.instagram.com/edwin_eito" target="_blank">
+      <a class="card instagram app-link" href="https://www.instagram.com/edwin_eito" data-app="instagram">
         <div class="icon instagram"><img class="brand-logo" src="https://cdn.simpleicons.org/instagram/FF0069" alt="Instagram"></div>
         <div>
           <strong>Instagram</strong>
@@ -441,7 +441,7 @@ h1{
         <div class="arrow">›</div>
       </a>
 
-      <a class="card" href="https://www.tiktok.com/@eito_mvp" target="_blank">
+      <a class="card app-link" href="https://www.tiktok.com/@eito_mvp" data-app="tiktok">
         <div class="icon tiktok"><img class="brand-logo" src="https://cdn.simpleicons.org/tiktok/FFFFFF" alt="TikTok"></div>
         <div>
           <strong>TikTok</strong>
@@ -450,7 +450,7 @@ h1{
         <div class="arrow">›</div>
       </a>
 
-      <a class="card youtube" href="https://www.youtube.com/@eito_ttv" target="_blank">
+      <a class="card youtube app-link" href="https://www.youtube.com/@eito_ttv" data-app="youtube">
         <div class="icon youtube"><img class="brand-logo" src="https://cdn.simpleicons.org/youtube/FF0000" alt="YouTube"></div>
         <div>
           <strong>YouTube</strong>
@@ -459,7 +459,7 @@ h1{
         <div class="arrow">›</div>
       </a>
 
-      <a class="card twitch" href="https://www.twitch.tv/eito_ttv" target="_blank">
+      <a class="card twitch app-link" href="https://www.twitch.tv/eito_ttv" data-app="twitch">
         <div class="icon twitch"><img class="brand-logo" src="https://cdn.simpleicons.org/twitch/9146FF" alt="Twitch"></div>
         <div>
           <strong>Twitch</strong>
@@ -468,7 +468,7 @@ h1{
         <div class="arrow">›</div>
       </a>
 
-      <a class="card steam" href="https://steamcommunity.com/profiles/76561199100788703/" target="_blank">
+      <a class="card steam app-link" href="https://steamcommunity.com/profiles/76561199100788703/" data-app="steam">
         <div class="icon steam"><img class="brand-logo" src="https://cdn.simpleicons.org/steam/FFFFFF" alt="Steam"></div>
         <div>
           <strong>Mi Steam</strong>
@@ -560,5 +560,75 @@ h1{
 
 </main>
 
+
+<script>
+(() => {
+  const links = {
+    discord: {
+      android: 'intent://discord.com/invite/ReUtMYvgrx#Intent;scheme=https;package=com.discord;S.browser_fallback_url=https%3A%2F%2Fdiscord.gg%2FReUtMYvgrx;end',
+      ios: 'discord://-/invite/ReUtMYvgrx',
+      web: 'https://discord.gg/ReUtMYvgrx'
+    },
+    instagram: {
+      android: 'intent://instagram.com/_u/edwin_eito#Intent;scheme=https;package=com.instagram.android;S.browser_fallback_url=https%3A%2F%2Fwww.instagram.com%2Fedwin_eito;end',
+      ios: 'instagram://user?username=edwin_eito',
+      web: 'https://www.instagram.com/edwin_eito'
+    },
+    tiktok: {
+      android: 'intent://www.tiktok.com/@eito_mvp#Intent;scheme=https;package=com.zhiliaoapp.musically;S.browser_fallback_url=https%3A%2F%2Fwww.tiktok.com%2F%40eito_mvp;end',
+      ios: 'tiktok://user?username=eito_mvp',
+      web: 'https://www.tiktok.com/@eito_mvp'
+    },
+    youtube: {
+      android: 'intent://www.youtube.com/@eito_ttv#Intent;scheme=https;package=com.google.android.youtube;S.browser_fallback_url=https%3A%2F%2Fwww.youtube.com%2F%40eito_ttv;end',
+      ios: 'youtube://www.youtube.com/@eito_ttv',
+      web: 'https://www.youtube.com/@eito_ttv'
+    },
+    twitch: {
+      android: 'intent://www.twitch.tv/eito_ttv#Intent;scheme=https;package=tv.twitch.android.app;S.browser_fallback_url=https%3A%2F%2Fwww.twitch.tv%2Feito_ttv;end',
+      ios: 'twitch://stream/eito_ttv',
+      web: 'https://www.twitch.tv/eito_ttv'
+    },
+    steam: {
+      android: 'intent://steamcommunity.com/profiles/76561199100788703/#Intent;scheme=https;package=com.valvesoftware.android.steam.community;S.browser_fallback_url=https%3A%2F%2Fsteamcommunity.com%2Fprofiles%2F76561199100788703%2F;end',
+      ios: 'steam://openurl/https://steamcommunity.com/profiles/76561199100788703/',
+      web: 'https://steamcommunity.com/profiles/76561199100788703/'
+    }
+  };
+
+  const isAndroid = /Android/i.test(navigator.userAgent);
+  const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+  document.querySelectorAll('.app-link[data-app]').forEach(link => {
+    link.addEventListener('click', event => {
+      const key = link.dataset.app;
+      const target = links[key];
+      if (!target) return;
+
+      // Desktop: keep the normal web URL.
+      if (!isAndroid && !isIOS) {
+        link.href = target.web;
+        return;
+      }
+
+      event.preventDefault();
+
+      if (isAndroid) {
+        // Android intent URLs request the native app and carry a web fallback.
+        window.location.href = target.android;
+      } else {
+        // iOS custom schemes attempt the app; after a short delay, use the web fallback.
+        let leftPage = false;
+        const markLeft = () => { leftPage = true; };
+        window.addEventListener('pagehide', markLeft, { once: true });
+        window.location.href = target.ios;
+        setTimeout(() => {
+          if (!leftPage) window.location.href = target.web;
+        }, 1400);
+      }
+    }, { passive: false });
+  });
+})();
+</script>
 </body>
 </html>
