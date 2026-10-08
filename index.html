@@ -596,8 +596,18 @@ h1{
     }
   };
 
-  const isAndroid = /Android/i.test(navigator.userAgent);
-  const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+  const ua = navigator.userAgent || '';
+  const isAndroid = /Android/i.test(ua);
+  const isIOS = /iPhone|iPad|iPod/i.test(ua);
+
+  // TikTok, Instagram y algunos navegadores internos bloquean intent://
+  // y esquemas personalizados. En esos casos el intento puede producir
+  // "La acción no se pudo completar". Usamos HTTPS normal como respaldo.
+  const isTikTokBrowser = /TikTok|BytedanceWebview|musical_ly/i.test(ua);
+  const isInstagramBrowser = /Instagram/i.test(ua);
+  const isFacebookBrowser = /FBAN|FBAV|FB_IAB/i.test(ua);
+  const isRestrictedInAppBrowser =
+    isTikTokBrowser || isInstagramBrowser || isFacebookBrowser;
 
   document.querySelectorAll('.app-link[data-app]').forEach(link => {
     link.addEventListener('click', event => {
@@ -605,8 +615,15 @@ h1{
       const target = links[key];
       if (!target) return;
 
-      // Desktop: keep the normal web URL.
+      // PC: enlace web normal.
       if (!isAndroid && !isIOS) {
+        link.href = target.web;
+        return;
+      }
+
+      // En navegadores internos que bloquean intents, evitamos el error
+      // y dejamos que la plataforma abra su URL HTTPS normalmente.
+      if (isRestrictedInAppBrowser) {
         link.href = target.web;
         return;
       }
@@ -614,10 +631,17 @@ h1{
       event.preventDefault();
 
       if (isAndroid) {
-        // Android intent URLs request the native app and carry a web fallback.
+        // Intenta abrir la aplicación.
         window.location.href = target.android;
+
+        // Si el navegador bloquea el intent, vuelve a la web.
+        setTimeout(() => {
+          if (document.visibilityState === 'visible') {
+            window.location.href = target.web;
+          }
+        }, 1800);
       } else {
-        // iOS custom schemes attempt the app; after a short delay, use the web fallback.
+        // iOS: intenta la aplicación y después usa la web si no responde.
         let leftPage = false;
         const markLeft = () => { leftPage = true; };
         window.addEventListener('pagehide', markLeft, { once: true });
