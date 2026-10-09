@@ -664,3 +664,84 @@ body { position: relative; }
   .ambient-stars { animation: none; }
   .rgb-ring { animation: rgbspin 2.7s linear infinite; }
 }
+
+
+/* =========================================================
+   OPTIMIZACIÓN DE RENDERIZADO · OCTUBRE 2026
+   Conserva la identidad visual y reduce repintados en móvil.
+========================================================= */
+.platform-main { grid-template-columns: 50px minmax(0, 1fr) 28px; }
+.platform-copy { display:block; min-width:0; position:relative; z-index:2; }
+.platform-name { display:block; position:relative; z-index:2; visibility:visible; opacity:1; }
+.platform-sub { display:block; position:relative; z-index:2; }
+.platform-card.open .platform-main,
+.platform-card.open .platform-copy,
+.platform-card.open .platform-name { visibility:visible; opacity:1; }
+/* Evita el conflicto entre la animación de entrada y el brillo continuo. */
+.platform-card { animation: card-arrive .48s cubic-bezier(.2,.75,.25,1) both !important; }
+.platform-card::after { animation: card-sheen-loop 8.8s ease-in-out 2s infinite !important; }
+.platform-card::before { animation: none !important; }
+@keyframes card-arrive {
+  from { opacity:0; transform:translate3d(0,8px,0); }
+  to { opacity:1; transform:translate3d(0,0,0); }
+}
+/* En móvil evita fondos fijos y filtros de composición costosos. */
+@media (max-width:700px) {
+  html { scroll-behavior:auto; }
+  body {
+    background-attachment:scroll !important;
+    background-position:center top;
+  }
+  body::before { position:absolute; inset:0 0 auto; height:100%; z-index:0; }
+  .ambient-stars {
+    position:absolute !important;
+    inset:0 0 auto !important;
+    height:100%;
+    opacity:.25;
+    animation:none !important;
+    background-size:300px 360px;
+  }
+  .page { position:relative; z-index:2; }
+  .platform-card {
+    contain:layout paint;
+    box-shadow:0 7px 18px rgba(0,0,0,.22);
+    transition:border-color .18s ease, box-shadow .18s ease;
+  }
+  .platform-card:hover { transform:none; }
+  .platform-card::before { display:none; }
+  .platform-card::after {
+    animation:card-sheen-loop 9.5s ease-in-out 2s infinite !important;
+    opacity:.5;
+  }
+  .platform-card.open { box-shadow:0 8px 20px rgba(0,0,0,.25); }
+  .platform-main {
+    grid-template-columns:48px minmax(0,1fr) 24px !important;
+    gap:11px;
+    padding:12px 13px;
+    min-height:74px;
+  }
+  .platform-copy { padding:0 3px !important; }
+  .platform-name { line-height:1.25; }
+  .platform-sub { max-width:100%; }
+  .platform-icon { box-shadow:0 0 8px color-mix(in srgb,var(--platform) 24%,transparent); }
+  .platform-icon img { animation:none !important; }
+  .rgb-ring {
+    animation:rgbspin 3.2s linear infinite !important;
+    will-change:transform;
+    box-shadow:0 0 6px rgba(255,0,90,.4),0 0 9px rgba(0,245,255,.38),0 0 12px rgba(57,255,20,.24) !important;
+  }
+  .platform-panel { transition:max-height .24s ease, padding .2s ease, opacity .18s ease, transform .2s ease; }
+  .preview-image { content-visibility:auto; }
+}
+/* En escritorio se conserva el movimiento de los iconos y las estrellas. */
+@media (min-width:701px) {
+  .platform-card { box-shadow:0 9px 24px rgba(0,0,0,.23); }
+  .ambient-stars { will-change:background-position,opacity; }
+}
+@media (prefers-reduced-motion:reduce) {
+  .platform-card, .platform-card::after, .platform-icon img, .ambient-stars {
+    animation:none !important;
+  }
+  .rgb-ring { animation:rgbspin 3.2s linear infinite !important; }
+  .platform-panel, .platform-main, .option { transition-duration:.12s !important; }
+}

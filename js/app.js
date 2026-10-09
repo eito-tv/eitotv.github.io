@@ -14,7 +14,7 @@ const LINKS = {
 };
 
 const PLATFORMS = [
-  {id:'discord', name:'SERVER DE DISCORD', sub:'Somos 700 miembros · Comunidad · Gaming', icon:'discord.svg', preview:'server', previewImage:'discord-server-preview.webp', previewAlt:'Tarjeta de la comunidad gamer EITO en Discord'},
+  {id:'discord', name:'SERVER DE DISCORD', sub:'Somos más de 700 miembros · Comunidad · Gaming', icon:'discord.svg', preview:'server', previewImage:'discord-server-preview.webp', previewAlt:'Tarjeta de la comunidad gamer EITO en Discord'},
   {id:'tiktok', name:'TikTok', sub:'@eito_mvp', username:'@eito_mvp', icon:'tiktok.svg', preview:'profile', previewImage:'tiktok-preview.webp', previewAlt:'Captura del perfil de Eito en TikTok'},
   {id:'twitch', name:'Twitch', sub:'@eito_ttv', username:'eito_ttv', icon:'twitch.svg', preview:'profile', previewImage:'twitch-preview.webp', previewAlt:'Imagen de perfil o portada de Eito'},
   {id:'steam', name:'Steam', sub:'Mi perfil de Steam', username:'Eito (perfil de Steam)', icon:'steam.svg', preview:'profile', previewImage:'steam-preview.webp', previewAlt:'Captura del perfil de Steam de Eito'},
@@ -69,7 +69,7 @@ function makeCard(item,index){
   card.innerHTML=`
     <button class="platform-main" type="button" aria-expanded="false">
       <span class="platform-icon"><img src="assets/${item.icon}" alt=""></span>
-      <span><span class="platform-name">${esc(item.name)}</span><span class="platform-sub">${esc(item.sub)}</span></span>
+      <span class="platform-copy"><span class="platform-name">${esc(item.name)}</span><span class="platform-sub">${esc(item.sub)}</span></span>
       <span class="arrow">›</span>
     </button>
     <div class="platform-panel">
